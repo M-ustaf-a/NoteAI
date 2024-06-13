@@ -14,10 +14,8 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function NavBar() {
-  const { theme } = useTheme();
-
+  const {theme} = useTheme();
   const [showAddEditNoteDialog, setShowAddEditNoteDialog] = useState(false);
-
   return (
     <>
       <div className="p-4 shadow">
@@ -43,10 +41,7 @@ export default function NavBar() {
           </div>
         </div>
       </div>
-      <AddEditNoteDialog
-        open={showAddEditNoteDialog}
-        setOpen={setShowAddEditNoteDialog}
-      />
+      <AddEditNoteDialog open={showAddEditNoteDialog} setOpen={setShowAddEditNoteDialog}/>
     </>
   );
 }

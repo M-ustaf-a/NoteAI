@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 export default function Home() {
   const { userId } = auth();
 
-  if (userId) redirect("/notes");
+  if (userId) redirect("/");
 
   return (
     <main className="flex h-screen flex-col items-center justify-center gap-5">

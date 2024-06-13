@@ -1,6 +1,6 @@
-import { notesIndex } from "@/lib/db/pinecone";
+// import { notesIndex } from "@/lib/db/pinecone";
 import prisma from "@/lib/db/prisma";
-import { getEmbedding } from "@/lib/openai";
+// import { getEmbedding } from "@/lib/openai";
 import {
   createNoteSchema,
   deleteNoteSchema,
@@ -38,13 +38,13 @@ export async function POST(req: Request) {
         },
       });
 
-      await notesIndex.upsert([
-        {
-          id: note.id,
-          values: embedding,
-          metadata: { userId },
-        },
-      ]);
+      // await notesIndex.upsert([
+      //   {
+      //     id: note.id,
+      //     values: embedding,
+      //     metadata: { userId },
+      //   },
+      // ]);
 
       return note;
     });
@@ -92,13 +92,13 @@ export async function PUT(req: Request) {
         },
       });
 
-      await notesIndex.upsert([
-        {
-          id,
-          values: embedding,
-          metadata: { userId },
-        },
-      ]);
+      // await notesIndex.upsert([
+      //   {
+      //     id,
+      //     values: embedding,
+      //     metadata: { userId },
+      //   },
+      // ]);
 
       return updatedNote;
     });
@@ -137,7 +137,7 @@ export async function DELETE(req: Request) {
 
     await prisma.$transaction(async (tx) => {
       await tx.note.delete({ where: { id } });
-      await notesIndex.deleteOne(id);
+      // await notesIndex.deleteOne(id);
     });
 
     return Response.json({ message: "Note deleted" }, { status: 200 });
@@ -148,5 +148,5 @@ export async function DELETE(req: Request) {
 }
 
 async function getEmbeddingForNote(title: string, content: string | undefined) {
-  return getEmbedding(title + "\n\n" + content ?? "");
+  // return getEmbedding(title + "\n\n" + content ?? "");
 }
